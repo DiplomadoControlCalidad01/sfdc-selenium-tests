@@ -2,6 +2,9 @@
   
 <suite name="Suite1" verbose="1" >
   <test name="Regression1">
+    <parameter name="appUrl" value="https://login.salesforce.com" />
+    <parameter name="username" value="uvillaseca@diplomadoqa2018.com" />
+    <parameter name="password" value="YbaN8pAm" />
     <classes>
       <class name="org.fundacionjala.diplomadoqa.guiautomation.test.RootState"/>
     </classes>
