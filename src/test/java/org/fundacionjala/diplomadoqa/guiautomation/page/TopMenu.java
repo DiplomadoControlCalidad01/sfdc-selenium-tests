@@ -1,26 +1,27 @@
 package org.fundacionjala.diplomadoqa.guiautomation.page;
 
+import org.fundacionjala.diplomadoqa.guiautomation.Component;
+import org.fundacionjala.diplomadoqa.guiautomation.ReTry;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TopMenu {
-    private final WebDriver driver;
-
+public class TopMenu extends Component {
     public TopMenu (WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void clickSetup() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions..elementToBeClickable(By.cssSelector(".setupGear a")));
-        driver.findElement(By.cssSelector(".setupGear a")).click();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WebElement setupLink = driver.findElement(By.cssSelector(".setupGear a"));
+        //wait.until(ExpectedConditions.elementToBeClickable(setupLink));
+        // otherwise the popup is not displayed in Firefox
+        ReTry.doReTry(() -> { setupLink.click(); return true;});
+        setupLink.click();
+        setupLink.click();
+        setupLink.click();
     }
 
     public void clickDeveloperConsole() {

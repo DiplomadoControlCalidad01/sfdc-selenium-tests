@@ -1,13 +1,13 @@
 package org.fundacionjala.diplomadoqa.guiautomation.page;
 
+import org.fundacionjala.diplomadoqa.guiautomation.Component;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
-    private final WebDriver driver;
+public class LoginPage extends Component {
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void setUsername(String username) {
