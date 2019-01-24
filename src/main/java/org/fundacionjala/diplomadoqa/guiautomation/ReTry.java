@@ -10,14 +10,14 @@ import java.util.function.Supplier;
  * Date: 1/18/2019
  */
 public class ReTry {
-    public static void doReTry(Supplier<Object> toReTry) {
+    public static void doReTry(Callback toReTry) {
         int interval = 1000;
         int timeout = 10;
         int tryCount = 0;
         boolean hasExceptionBeenThrown;
         do {
             try {
-                toReTry.get();
+                toReTry.call();
                 hasExceptionBeenThrown = false;
             } catch (Exception e) {
                 hasExceptionBeenThrown = true;

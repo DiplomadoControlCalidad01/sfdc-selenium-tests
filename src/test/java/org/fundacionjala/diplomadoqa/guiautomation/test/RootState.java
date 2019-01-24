@@ -31,9 +31,7 @@ public class RootState {
         topMenu.clickSetup();
         topMenu.clickDeveloperConsole();
         DeveloperConsoleMenuBar devConsoleMenuBar = new DeveloperConsoleMenuBar(driver);
-        Thread.sleep(10000);
         devConsoleMenuBar.expandFileMenu();
-        Thread.sleep(5000);
         devConsoleMenuBar.expandFileNew();
         Thread.sleep(10000);
     }
@@ -58,6 +56,7 @@ public class RootState {
                 driver = new FirefoxDriver(firefoxOptions);
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
     }
 
     @AfterTest

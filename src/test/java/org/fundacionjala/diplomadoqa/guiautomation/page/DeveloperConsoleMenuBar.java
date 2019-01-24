@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * User: ubaldo villaseca
@@ -17,12 +18,15 @@ public class DeveloperConsoleMenuBar extends Component {
     }
 
     public void expandFileMenu() {
-        driver.findElement(By.cssSelector("#editorMenuEntry-btnWrap")).click();
+        WebElement element = driver.findElement(By.xpath("//button[contains(., 'File')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
     }
 
     public void expandFileNew() {
+        WebElement element = driver.findElement(By.xpath("//a[contains(., 'New')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         Actions actions = new Actions(driver);
-        WebElement element = driver.findElement(By.cssSelector("#newMenuEntry-itemEl"));
         actions.moveToElement(element);
         actions.build().perform();
     }
