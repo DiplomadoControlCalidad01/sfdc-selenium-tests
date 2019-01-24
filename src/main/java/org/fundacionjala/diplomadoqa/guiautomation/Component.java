@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
 
+import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
+
 /**
  * User: ubaldo villaseca
  * Date: 1/23/2019
@@ -20,7 +22,11 @@ public abstract class Component {
     }
 
     protected void switchTo(String windowTitle) {
-        findWindow(windowTitle);
+        if (!run(() -> findWindow(windowTitle))) {
+            String msg = String.format("Could not find window with title '%s'", windowTitle);
+
+            throw new RuntimeException(msg);
+        }
     }
 
     private boolean findWindow(String windowTitle) {

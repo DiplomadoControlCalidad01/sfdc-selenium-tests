@@ -3,20 +3,17 @@ package org.fundacionjala.diplomadoqa.guiautomation.test;
 import org.fundacionjala.diplomadoqa.guiautomation.page.DeveloperConsoleMenuBar;
 import org.fundacionjala.diplomadoqa.guiautomation.page.LoginPage;
 import org.fundacionjala.diplomadoqa.guiautomation.page.TopMenu;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.ProfilesIni;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class RootState {
     private WebDriver driver;
@@ -28,11 +25,9 @@ public class RootState {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.doLogin(username, password);
         TopMenu topMenu = new TopMenu(driver);
-        topMenu.clickSetup();
-        topMenu.clickDeveloperConsole();
+        topMenu.openDeveloperConsole();
         DeveloperConsoleMenuBar devConsoleMenuBar = new DeveloperConsoleMenuBar(driver);
-        devConsoleMenuBar.expandFileMenu();
-        devConsoleMenuBar.expandFileNew();
+        devConsoleMenuBar.openFileNew();
         Thread.sleep(10000);
     }
 

@@ -1,11 +1,14 @@
 package org.fundacionjala.diplomadoqa.guiautomation.page;
 
 import org.fundacionjala.diplomadoqa.guiautomation.Component;
+import org.fundacionjala.diplomadoqa.guiautomation.ReTry;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
 
 /**
  * User: ubaldo villaseca
@@ -17,13 +20,18 @@ public class DeveloperConsoleMenuBar extends Component {
         switchTo("Developer Console");
     }
 
-    public void expandFileMenu() {
-        WebElement element = driver.findElement(By.xpath("//button[contains(., 'File')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+    public void openFileNew() {
+        run(() -> {
+            expandFileMenu();
+            expandFileNew();
+        });
     }
 
-    public void expandFileNew() {
+    protected void expandFileMenu() {
+        driver.findElement(By.xpath("//button[contains(., 'File')]")).click();
+    }
+
+    protected void expandFileNew() {
         WebElement element = driver.findElement(By.xpath("//a[contains(., 'New')]"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         Actions actions = new Actions(driver);

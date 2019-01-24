@@ -1,8 +1,5 @@
 package org.fundacionjala.diplomadoqa.guiautomation;
 
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -10,24 +7,46 @@ import java.util.function.Supplier;
  * Date: 1/18/2019
  */
 public class ReTry {
-    public static void doReTry(Callback toReTry) {
+    public static void run(Callback toReTry) {
         int interval = 1000;
         int timeout = 10;
         int tryCount = 0;
-        boolean hasExceptionBeenThrown;
-        do {
+        while (true) {
             try {
                 toReTry.call();
-                hasExceptionBeenThrown = false;
+                break;
             } catch (Exception e) {
-                hasExceptionBeenThrown = true;
                 tryCount++;
+                if (tryCount >= timeout) {
+                    throw e;
+                } else {
+                    try {
+                        Thread.sleep(interval);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    public static Boolean run(Supplier<Boolean> toReTry) {
+        int interval = 1000;
+        int timeout = 10;
+        int tryCount = 0;
+        while (!toReTry.get()) {
+            tryCount++;
+            if (tryCount >= timeout) {
+                return false;
+            } else {
                 try {
                     Thread.sleep(interval);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
             }
-        } while (hasExceptionBeenThrown && tryCount <= timeout);
+        }
+
+        return true;
     }
 }
