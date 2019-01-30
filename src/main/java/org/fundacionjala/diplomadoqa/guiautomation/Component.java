@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.inject.Inject;
 import java.util.Set;
 
 import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
@@ -13,13 +14,12 @@ import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
  * Date: 1/23/2019
  */
 public abstract class Component {
-    protected final WebDriver driver;
-    protected final WebDriverWait wait;
 
-    public Component(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 15000);
-    }
+    @Inject
+    protected WebDriver driver;
+
+    @Inject
+    protected WebDriverWait wait;
 
     protected void switchTo(String windowTitle) {
         if (!run(() -> findWindow(windowTitle))) {

@@ -7,10 +7,6 @@ import org.openqa.selenium.WebDriver;
 import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
 
 public class TopMenu extends Component {
-    public TopMenu (WebDriver driver) {
-        super(driver);
-    }
-
     public void openDeveloperConsole() {
         run(() -> {
             clickSetup();

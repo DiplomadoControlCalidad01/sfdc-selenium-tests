@@ -6,10 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends Component {
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
     public void setUsername(String username) {
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
