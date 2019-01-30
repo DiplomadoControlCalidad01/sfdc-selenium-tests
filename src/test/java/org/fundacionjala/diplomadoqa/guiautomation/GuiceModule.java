@@ -3,7 +3,10 @@ package org.fundacionjala.diplomadoqa.guiautomation;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;
+import org.fundacionjala.diplomadoqa.guiautomation.page.DeveloperConsole;
 import org.fundacionjala.diplomadoqa.guiautomation.page.LoginPage;
+import org.fundacionjala.diplomadoqa.guiautomation.page.NewApexClass;
+import org.fundacionjala.diplomadoqa.guiautomation.page.TopMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -41,6 +44,9 @@ public class GuiceModule extends AbstractModule {
         }
 
         bind(LoginPage.class).in(Singleton.class);
+        bind(TopMenu.class).in(Singleton.class);
+        bind(DeveloperConsole.class).in(Singleton.class);
+        bind(NewApexClass.class).in(Singleton.class);
     }
 
     @Provides
@@ -64,7 +70,8 @@ public class GuiceModule extends AbstractModule {
                 firefoxOptions.addPreference("dom.push.enabled", false);
                 driver = new FirefoxDriver(firefoxOptions);
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        int timeout = Integer.parseInt(props.getProperty("run.timeout"));
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
 
         return driver;

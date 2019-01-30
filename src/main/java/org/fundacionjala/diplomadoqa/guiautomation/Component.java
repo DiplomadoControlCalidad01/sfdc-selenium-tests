@@ -29,6 +29,10 @@ public abstract class Component {
         }
     }
 
+    protected void switchTo() {
+
+    }
+
     private boolean findWindow(String windowTitle) {
         String currentWindowHandle = driver.getWindowHandle();
         Set<String> windowHandles = driver.getWindowHandles();

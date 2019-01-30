@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 public class ReTry {
     public static void run(Callback toReTry) {
         int interval = 1000;
-        int timeout = 10;
+        int timeout = 5;
         int tryCount = 0;
         while (true) {
             try {
