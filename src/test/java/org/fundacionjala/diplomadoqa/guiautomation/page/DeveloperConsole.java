@@ -2,6 +2,7 @@ package org.fundacionjala.diplomadoqa.guiautomation.page;
 
 import org.fundacionjala.diplomadoqa.guiautomation.Component;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import javax.inject.Inject;
@@ -22,28 +23,27 @@ public class DeveloperConsole extends Component {
         switchTo("Developer Console");
     }
 
-    public void openFileNew() {
-        run(() -> {
-            expandFileMenu();
-            expandFileNew();
-        });
-    }
-
     public NewApexClass createNewApexClass() {
         run(() -> {
-            driver.findElement(By.xpath("//a[contains(@id, 'newApexClassButton')]")).click();
+            Actions actions = new Actions(driver);
+            actions.click(fileMenu());
+            actions.moveToElement(fileNew());
+            actions.click(newApexClass());
+            actions.build().perform();
         });
 
         return newApexClass;
     }
 
-    protected void expandFileMenu() {
-        driver.findElement(By.xpath("//button[contains(@id, 'editorMenuEntry')]")).click();
+    private WebElement fileMenu() {
+        return driver.findElement(By.xpath("//button[contains(@id, 'editorMenuEntry')]"));
     }
 
-    protected void expandFileNew() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(By.xpath("//a[contains(@id, 'newMenuEntry')]")));
-        actions.build().perform();
+    private WebElement fileNew() {
+        return driver.findElement(By.xpath("//a[contains(@id, 'newMenuEntry')]"));
+    }
+
+    private WebElement newApexClass() {
+        return driver.findElement(By.xpath("//a[contains(@id, 'newApexClassButton')]"));
     }
 }

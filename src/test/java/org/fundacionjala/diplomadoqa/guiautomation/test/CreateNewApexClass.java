@@ -29,7 +29,6 @@ public class CreateNewApexClass {
     public void salesforceLogin() throws InterruptedException {
         topMenu.openDeveloperConsole();
         devConsole.switchTo();
-        devConsole.openFileNew();
         NewApexClass newApexClass = devConsole.createNewApexClass();
         String newApexClassName = RandomStringUtils.randomAlphabetic(10);
         newApexClass.setName(newApexClassName);
