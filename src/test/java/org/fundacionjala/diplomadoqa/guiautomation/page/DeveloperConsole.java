@@ -4,6 +4,7 @@ import org.fundacionjala.diplomadoqa.guiautomation.Component;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.log4testng.Logger;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,8 @@ import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
  */
 public class DeveloperConsole extends Component {
 
+    private static Logger logger = Logger.getLogger(DeveloperConsole.class);
+
     @Inject
     private NewApexClass newApexClass;
 
@@ -25,14 +28,23 @@ public class DeveloperConsole extends Component {
 
     public NewApexClass createNewApexClass() {
         run(() -> {
+            fileMenu().click();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                logger.error("Interruption exception", e);
+            }
             Actions actions = new Actions(driver);
-            actions.click(fileMenu());
             actions.moveToElement(fileNew());
-            actions.click(newApexClass());
             actions.build().perform();
+            newApexClass().click();
         });
 
         return newApexClass;
+    }
+
+    public boolean findTab(String tabName) {
+        return driver.findElement(By.xpath(String.format("//div[@id='editors']/div[contains(@id, 'tabbar')]//button[contains(., '%s')]", tabName))).isDisplayed();
     }
 
     private WebElement fileMenu() {

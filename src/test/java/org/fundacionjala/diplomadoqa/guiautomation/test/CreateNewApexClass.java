@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 
+import static org.assertj.core.api.Assertions.*;
+
 /**
  * User: Ubaldo Villaseca
  * Date: 1/30/2019
@@ -33,6 +35,7 @@ public class CreateNewApexClass {
         String newApexClassName = RandomStringUtils.randomAlphabetic(10);
         newApexClass.setName(newApexClassName);
         newApexClass.clickOk();
+        assertThat(devConsole.findTab(newApexClassName)).isTrue();
         Thread.sleep(5000);
     }
 }

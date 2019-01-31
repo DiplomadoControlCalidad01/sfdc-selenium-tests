@@ -11,10 +11,10 @@ import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
  */
 public class NewApexClass extends Component {
     public void setName(String className) {
-        run (() -> driver.findElement(By.xpath("input[contains(@id, 'messagebox')]")).sendKeys(className));
+        run (() -> driver.findElement(By.xpath("//span[contains(text(), 'New Apex class')]/ancestor::div//input")).sendKeys(className));
     }
 
     public void clickOk() {
-        run (() -> driver.findElement(By.xpath("button[contains(., 'OK')]")).click());
+        run (() -> driver.findElement(By.xpath("//span[contains(text(), 'New Apex class')]/ancestor::div//button[contains(., 'OK')]")).click());
     }
 }
