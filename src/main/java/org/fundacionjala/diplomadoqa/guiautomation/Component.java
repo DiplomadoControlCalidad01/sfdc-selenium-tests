@@ -10,7 +10,7 @@ import java.util.Set;
 import static org.fundacionjala.diplomadoqa.guiautomation.ReTry.run;
 
 /**
- * User: ubaldo villaseca
+ * User: Ubaldo Villaseca
  * Date: 1/23/2019
  */
 public abstract class Component {

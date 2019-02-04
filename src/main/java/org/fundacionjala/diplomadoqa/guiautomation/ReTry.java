@@ -3,7 +3,7 @@ package org.fundacionjala.diplomadoqa.guiautomation;
 import java.util.function.Supplier;
 
 /**
- * User: ubaldo villaseca
+ * User: Ubaldo Villaseca
  * Date: 1/18/2019
  */
 public class ReTry {

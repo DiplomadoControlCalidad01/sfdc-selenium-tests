@@ -5,7 +5,7 @@
     <classes>
       <class name="org.fundacionjala.diplomadoqa.guiautomation.test.RootState"/>
       <class name="org.fundacionjala.diplomadoqa.guiautomation.test.Login"/>
-      <class name="org.fundacionjala.diplomadoqa.guiautomation.test.CreateNewApexClass"/>
+      <class name="org.fundacionjala.diplomadoqa.guiautomation.test.FileNew"/>
     </classes>
   </test>
 </suite>

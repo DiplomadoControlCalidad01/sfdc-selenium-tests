@@ -5,7 +5,7 @@ import org.openqa.selenium.*;
 import java.util.List;
 
 /**
- * User: ubaldo villaseca
+ * User: Ubaldo Villaseca
  * Date: 1/18/2019
  */
 public class SmartWebElement implements org.openqa.selenium.WebElement {

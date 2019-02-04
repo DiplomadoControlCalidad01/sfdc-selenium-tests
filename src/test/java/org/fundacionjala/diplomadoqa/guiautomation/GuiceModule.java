@@ -3,10 +3,7 @@ package org.fundacionjala.diplomadoqa.guiautomation;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;
-import org.fundacionjala.diplomadoqa.guiautomation.page.DeveloperConsole;
-import org.fundacionjala.diplomadoqa.guiautomation.page.LoginPage;
-import org.fundacionjala.diplomadoqa.guiautomation.page.NewApexClass;
-import org.fundacionjala.diplomadoqa.guiautomation.page.TopMenu;
+import org.fundacionjala.diplomadoqa.guiautomation.page.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -47,6 +44,8 @@ public class GuiceModule extends AbstractModule {
         bind(TopMenu.class).in(Singleton.class);
         bind(DeveloperConsole.class).in(Singleton.class);
         bind(NewApexClass.class).in(Singleton.class);
+        bind(NewApexTrigger.class).in(Singleton.class);
+        bind(NewVisualforcePage.class).in(Singleton.class);
     }
 
     @Provides

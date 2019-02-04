@@ -11,15 +11,14 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * User: Ubaldo Villaseca
- * Date: 1/30/2019
+ * Date: 2/4/2019
  */
 @Guice(modules = GuiceModule.class)
-public class CreateNewApexClass {
-
+public class OpenDeveloperConsole {
     @Inject
     private TopMenu topMenu;
 
@@ -28,7 +27,7 @@ public class CreateNewApexClass {
 
     @Test
     @DependsOn(Login.class)
-    public void salesforceLogin() throws InterruptedException {
+    public void salesforceLogin() {
         topMenu.openDeveloperConsole();
         devConsole.switchTo();
         NewApexClass newApexClass = devConsole.createNewApexClass();
@@ -36,6 +35,5 @@ public class CreateNewApexClass {
         newApexClass.setName(newApexClassName);
         newApexClass.clickOk();
         assertThat(devConsole.findTab(newApexClassName)).isTrue();
-        Thread.sleep(5000);
     }
 }
